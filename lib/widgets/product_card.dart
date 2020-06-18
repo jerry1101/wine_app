@@ -12,22 +12,22 @@ class ProductCard extends StatelessWidget {
     return Stack(children: <Widget>[
       Container(
         margin: EdgeInsets.only(top: 40, bottom: 20),
-        height: 100,
+        height: 120,
         decoration: BoxDecoration(
             color: Colors.blueGrey[800],
             borderRadius: BorderRadius.only(topRight: Radius.circular(10))),
       ),
       Container(
         margin: EdgeInsets.only(top: 35, bottom: 20, right: 10),
-        height: 100,
+        height: 120,
         decoration: BoxDecoration(
-            color: Colors.blue[200],
+            color: Colors.blue[100],
             borderRadius: BorderRadius.only(topRight: Radius.circular(10))),
       ),
       Container(
         margin: EdgeInsets.only(right: 20, top: 20, bottom: 20),
-        // color: Colors.white.withOpacity(0.1),
-        height: 120,
+        color: Colors.white.withOpacity(0.2),
+        height: 140,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -42,13 +42,14 @@ class ProductCard extends StatelessWidget {
                   Text(
                     this.title,
                     style: GoogleFonts.inconsolata(
-                        color: Colors.black54,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500),
+                        color: Colors.blue[900],
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900),
                   ),
                   Text(
                     this.description,
-                    style: GoogleFonts.robotoMono(fontSize: 12),
+                    style: GoogleFonts.comfortaa(
+                        fontSize: 9, fontWeight: FontWeight.w900),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 5,
                   )
