@@ -1,1 +1,1 @@
-const category_list = ['Wine', 'Spirits', 'Beer', 'Access', 'Deals'];
+const category_list = ['All', 'Wine', 'Spirits', 'Beer', 'Access', 'Deals'];

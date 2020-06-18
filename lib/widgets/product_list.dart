@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:wine_app/models/product.dart';
+import 'package:wine_app/viewmodels/product_view_model.dart';
 import 'package:wine_app/widgets/product_card.dart';
 
 class ProductList extends StatelessWidget {
-  final List<Product> product_list = products;
+  
   @override
   Widget build(BuildContext context) {
+    // var vm = Provider.of<ProductViewModel>(context);
+    var product_list = Provider.of<ProductViewModel>(context).productPresentation;
+    print("====>" + product_list.length.toString());
     return Expanded(
       child: ListView.builder(
           itemCount: product_list.length,

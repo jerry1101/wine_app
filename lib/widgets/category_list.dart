@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:wine_app/constants/category)list.dart';
 import 'package:wine_app/constants/layout_constants.dart';
-
-
+import 'package:wine_app/models/product.dart';
+import 'package:wine_app/viewmodels/product_view_model.dart';
 
 class CategoryList extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class _CategoryListState extends State<CategoryList> {
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
+    var vm = Provider.of<ProductViewModel>(context);
     return Container(
         height: 30,
         child: Container(
@@ -23,9 +25,18 @@ class _CategoryListState extends State<CategoryList> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    setState(() {
-                      selectedIndex = index;
-                    });
+                    selectedIndex = index;
+
+                    if (category_list[selectedIndex] == 'All') {
+                      vm.allProductPresent();
+                    } else {
+                      vm.getProductPresentByCategory(
+                          CategoryMap[category_list[selectedIndex]]);
+                    }
+
+                    // setState(() {
+                    //   selectedIndex = index;
+                    // });
                   },
                   child: Container(
                       width: 100,

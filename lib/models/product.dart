@@ -20,6 +20,13 @@ class Product extends Equatable {
 
 enum Category { wine, spirits, beer, accessories }
 
+const CategoryMap = {
+  'Wine': Category.wine,
+  'Spirits': Category.spirits,
+  'Beer': Category.beer,
+  'Access': Category.accessories
+};
+
 List<Product> products = [
   Product(
     id: 1,
