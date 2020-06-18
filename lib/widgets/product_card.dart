@@ -33,28 +33,39 @@ class ProductCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             // Image.asset('assets/images/Item_1.png', fit: BoxFit.fitHeight),
-            this.image,
+            GestureDetector(
+              child: this.image,
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            DetailScreen(this.image)));
+              },
+            ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 15),
               width: 200,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(
-                    this.title,
-                    style: GoogleFonts.inconsolata(
-                        color: Colors.blue[900],
-                        fontSize: 16,
-                        fontWeight: FontWeight.w900),
-                  ),
-                  Text(
-                    this.description,
-                    style: GoogleFonts.comfortaa(
-                        fontSize: 9, fontWeight: FontWeight.w900),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 5,
-                  )
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Text(
+                      this.title,
+                      style: GoogleFonts.inconsolata(
+                          color: Colors.blue[900],
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900),
+                    ),
+                    Text(
+                      this.description,
+                      style: GoogleFonts.comfortaa(
+                          fontSize: 9, fontWeight: FontWeight.w900),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 5,
+                    )
+                  ],
+                ),
               ),
             )
           ],
@@ -64,12 +75,34 @@ class ProductCard extends StatelessWidget {
           alignment: Alignment.center,
           decoration: BoxDecoration(
               color: Colors.amber[600],
-              borderRadius:
-                  BorderRadius.only(bottomRight: Radius.circular(5))),
+              borderRadius: BorderRadius.only(bottomRight: Radius.circular(5))),
           margin: EdgeInsets.only(right: 380, top: 40, bottom: 20),
-          child: Text(this.price.toString(),
-              style: TextStyle(color: Colors.blue[900],fontWeight: FontWeight.bold),
-              ))
+          child: Text(
+            this.price.toString(),
+            style:
+                TextStyle(color: Colors.blue[900], fontWeight: FontWeight.bold),
+          )),
     ]);
+  }
+}
+
+class DetailScreen extends StatelessWidget {
+  final Image imageLink;
+  DetailScreen(this.imageLink);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GestureDetector(
+        child: Center(
+          child: Hero(
+            tag: 'imageHero',
+            child: this.imageLink,
+          ),
+        ),
+        onTap: () {
+          Navigator.pop(context);
+        },
+      ),
+    );
   }
 }
