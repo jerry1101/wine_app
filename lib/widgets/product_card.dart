@@ -5,8 +5,9 @@ class ProductCard extends StatelessWidget {
   final Image image;
   final String title;
   final String description;
+  final double price;
 
-  ProductCard({@required this.title, this.description, this.image});
+  ProductCard({@required this.title, this.description, this.image, this.price});
   @override
   Widget build(BuildContext context) {
     return Stack(children: <Widget>[
@@ -59,6 +60,16 @@ class ProductCard extends StatelessWidget {
           ],
         ),
       ),
+      Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: Colors.amber[600],
+              borderRadius:
+                  BorderRadius.only(bottomRight: Radius.circular(5))),
+          margin: EdgeInsets.only(right: 380, top: 40, bottom: 20),
+          child: Text(this.price.toString(),
+              style: TextStyle(color: Colors.blue[900],fontWeight: FontWeight.bold),
+              ))
     ]);
   }
 }

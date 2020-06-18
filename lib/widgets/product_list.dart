@@ -18,7 +18,9 @@ class ProductList extends StatelessWidget {
             return ProductCard(
                 title: product_list[index].title,
                 description: product_list[index].description,
-                image: Image.network(product_list[index].image));
+                image: Image.network(product_list[index].image),
+                price: product_list[index].price
+                );
           }),
     );
   }
