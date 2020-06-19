@@ -33,16 +33,14 @@ class ProductCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             // Image.asset('assets/images/Item_1.png', fit: BoxFit.fitHeight),
-            GestureDetector(
-              child: this.image,
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            DetailScreen(this.image)));
-              },
-            ),
+            PhotoHero(
+                photo: this.image,
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute<void>(builder: (BuildContext context) {
+                    return DetailScreen(this.image);
+                  }));
+                }),
             Container(
               margin: EdgeInsets.symmetric(vertical: 15),
               width: 200,
@@ -94,14 +92,39 @@ class DetailScreen extends StatelessWidget {
     return Scaffold(
       body: GestureDetector(
         child: Center(
-          child: Hero(
-            tag: 'imageHero',
-            child: this.imageLink,
+          child: PhotoHero(
+            photo: this.imageLink,
+            onTap: () => Navigator.of(context).pop(),
           ),
         ),
         onTap: () {
           Navigator.pop(context);
         },
+      ),
+    );
+  }
+}
+
+class PhotoHero extends StatelessWidget {
+  const PhotoHero({Key key, this.photo, this.onTap, this.width})
+      : super(key: key);
+
+  final Image photo;
+  final VoidCallback onTap;
+  final double width;
+
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      child: Hero(
+        tag: photo,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: onTap,
+            child: photo,
+          ),
+        ),
       ),
     );
   }
